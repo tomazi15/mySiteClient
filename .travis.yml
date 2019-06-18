@@ -1,0 +1,22 @@
+sudo: required
+language: node_js
+node_js: 
+  - "stable"
+cache:
+  directories:
+    - "node_modules"
+services:
+  - docker
+before_install:
+  - docker build -t mysite:travis-$TRAVIS_BUILD_NUMBER .
+  - docker ps -a
+  - docker images
+script:
+  - npm test
+  - npm run build
+  - docker images "$DOCKER_USERNAME"/mysite
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker tag mysite:travis-$TRAVIS_BUILD_NUMBER "$DOCKER_USERNAME"/mysite:travis-$TRAVIS_BUILD_NUMBER;
+    echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    docker push "$DOCKER_USERNAME"/mysite:travis-$TRAVIS_BUILD_NUMBER; fi
