@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import axios from 'axios';
 
 class ContactForm extends Component {
     constructor () {
@@ -16,16 +17,19 @@ class ContactForm extends Component {
         }
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange = e => {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    handleSubmit (e) {
+    async handleSubmit (e) {
         e.preventDefault();
         const { name, email, message } = this.state;
-        console.log(name, email, message)   
+        const form = await axios.post('/api/form', {
+            name, email, message
+        });
     }
 
     render() {
