@@ -25,6 +25,7 @@ class ContactForm extends Component {
     }
 
     async handleSubmit (e) {
+        // console.log('SUBMIT');
         e.preventDefault();
         const { name, email, message } = this.state;
         const form = await axios.post('/api/form', {
@@ -64,7 +65,7 @@ class ContactForm extends Component {
                                     onChange={this.handleChange}
                                 />
                             </Form.Group>
-                            <Button>Submit</Button>
+                            <Button type="submit">Submit</Button>
                         </Form>
                     </Col>
                 </Row>
