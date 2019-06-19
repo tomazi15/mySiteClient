@@ -31,6 +31,7 @@ class ContactForm extends Component {
         const form = await axios.post('/api/form', {
             name, email, message
         });
+        console.log(form);
     }
 
     render() {
