@@ -19,6 +19,5 @@ script:
   - docker images "$DOCKER_USERNAME"/mysite
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    docker tag "$DOCKER_USERNAME"/mysite:travis-$TRAVIS_BUILD_NUMBER "$DOCKER_USERNAME"/mysite:travis-$TRAVIS_BUILD_NUMBER
+    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
     docker push "$DOCKER_USERNAME"/mysite:travis-$TRAVIS_BUILD_NUMBER; fi
