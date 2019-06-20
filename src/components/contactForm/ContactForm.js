@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios';
+
+const Style = styled.div`
+    background-color: #212121;
+`;
+
+const SubmitButton = styled(Button)`
+    margin: 16px 0 32px 0;
+`;
 
 class ContactForm extends Component {
     constructor () {
@@ -25,7 +34,7 @@ class ContactForm extends Component {
     }
 
     async handleSubmit (e) {
-        // console.log('SUBMIT');
+        console.log('SUBMIT');
         e.preventDefault();
         const { name, email, message } = this.state;
         const form = await axios.post('/api/form', {
@@ -36,41 +45,44 @@ class ContactForm extends Component {
 
     render() {
         return (
-            <Container>
-                <Row>
-                    <Col>
-                        <Form onSubmit={this.handleSubmit}>
-                            <Form.Group>
-                                <Form.Label htmlFor='name'>Name: </Form.Label>
-                                <Form.Control 
-                                    type='text'
-                                    name='name'
-                                    onChange={this.handleChange}
-                                />
-                            </Form.Group>
+            <Style>
+                <Container>
+                    <Row>
+                        <Col>
+                            <Form onSubmit={this.handleSubmit}>
+                                <Form.Group>
+                                    <Form.Label htmlFor='name'>Name: </Form.Label>
+                                    <Form.Control 
+                                        type='text'
+                                        name='name'
+                                        onChange={this.handleChange}
+                                    />
+                                </Form.Group>
 
-                            <Form.Group>
-                                <Form.Label htmlFor='email'>Email: </Form.Label>
-                                <Form.Control  
-                                    type='email'
-                                    name='email'
-                                    onChange={this.handleChange}
-                                />
-                            </Form.Group>
+                                <Form.Group>
+                                    <Form.Label htmlFor='email'>Email: </Form.Label>
+                                    <Form.Control  
+                                        type='email'
+                                        name='email'
+                                        onChange={this.handleChange}
+                                    />
+                                </Form.Group>
 
-                            <Form.Group>
-                                <Form.Label htmlFor='message'>Message: </Form.Label>
-                                <Form.Control  
-                                    type='textarea'
-                                    name='message'
-                                    onChange={this.handleChange}
-                                />
-                            </Form.Group>
-                            <Button type="submit">Submit</Button>
-                        </Form>
-                    </Col>
-                </Row>
-            </Container>
+                                <Form.Group>
+                                    <Form.Label htmlFor='message'>Message: </Form.Label>
+                                    <Form.Control  
+                                        as='textarea'
+                                        rows="4"
+                                        name='message'
+                                        onChange={this.handleChange}
+                                    />
+                                </Form.Group>
+                                <SubmitButton type="submit">Submit</SubmitButton>
+                            </Form>
+                        </Col>
+                    </Row>
+                </Container>
+            </Style>
         );
     }
 }

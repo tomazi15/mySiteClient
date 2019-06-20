@@ -74,14 +74,6 @@ const Style = styled.div`
         left: 50%;
         transform: translate(-50%, 50%);
     }
-    .test {
-        height: 100px;
-        width: 100%;
-        background-color: #212121;
-        margin-top: -1px;
-        -webkit-clip-path: polygon(100% 0, 0 0, 100% 50%);
-        clip-path: polygon(100% 0, 0 0, 100% 50%);
-    }
     .extras {
         padding-top: 80px;
         width: 90%;
@@ -143,9 +135,7 @@ class Tile extends Component {
                 </div>
                 <div className='wrap'>
                     {  this.renderTile(this.mergeData(logosList, tileDataConstant)) }
-                </div>
-                <div className='test'>
-                </div>  
+                </div> 
             </Style>
         );
     }

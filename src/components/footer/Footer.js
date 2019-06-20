@@ -17,6 +17,14 @@ const Style = styled.div`
         font-family: Montserrat Alternates;
 
     }
+    .wedge {
+        height: 50px;
+        width: 100%;
+        background-color: #212121;
+        margin-top: -1px;
+        -webkit-clip-path: polygon(100% 0, 0 0, 100% 50%);
+        clip-path: polygon(100% 0, 0 0, 100% 50%);
+    }
     .logos {
         margin: -20px;
     }
@@ -40,6 +48,8 @@ class Footer extends Component {
     render () {
         return (
             <Style>
+                <div className='wedge'>
+                </div>  
                 <Row>
                     <Col>
                         <footer className="footer">
