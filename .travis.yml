@@ -19,5 +19,5 @@ script:
   - docker images "$DOCKER_USERNAME"/mysite
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login docker.io
+    docker login -u "$DOCKER_USERNAME"
     docker push "$DOCKER_USERNAME"/mysite:travis-$TRAVIS_BUILD_NUMBER; fi
