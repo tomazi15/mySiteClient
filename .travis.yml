@@ -16,5 +16,6 @@ script:
   - npm run build
   - docker images "$DOCKER_USERNAME"/mysite
 after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
     echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    docker push "$DOCKER_USERNAME"/mysite:travis-$TRAVIS_BUILD_NUMBER
+    docker push "$DOCKER_USERNAME"/mysite:travis-$TRAVIS_BUILD_NUMBER; fi
