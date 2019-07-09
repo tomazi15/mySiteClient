@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { MAILER_ENDPOINT } from '../../siteApi/apis';
 import axios from 'axios';
 
 const Style = styled.div`
@@ -38,7 +39,7 @@ class ContactForm extends Component {
         console.log('SUBMIT');
         e.preventDefault();
         const { name, email, message } = this.state;
-        const form = await axios.post('https://tomazi-website-be.herokuapp.com', {
+        const form = await axios.post(MAILER_ENDPOINT, {
             name, email, message
         });
         console.log('WDF', form);

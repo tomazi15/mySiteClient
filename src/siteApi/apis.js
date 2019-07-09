@@ -1,0 +1,1 @@
+export const MAILER_ENDPOINT = 'https://tomazi-website-be.herokuapp.com/api/mailer';
