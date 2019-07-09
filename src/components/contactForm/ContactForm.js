@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Form from 'react-bootstrap/Form';
+import { CommonForm } from '../commonComponents/form/commponForm';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -37,46 +38,23 @@ class ContactForm extends Component {
         console.log('SUBMIT');
         e.preventDefault();
         const { name, email, message } = this.state;
-        const form = await axios.post('/api/form', {
+        const form = await axios.post('https://tomazi-website-be.herokuapp.com', {
             name, email, message
         });
-        console.log(form);
+        console.log('WDF', form);
     }
 
     render() {
+        console.log('EVNET', this.state.name);
         return (
             <Style>
                 <Container>
                     <Row>
                         <Col>
                             <Form onSubmit={this.handleSubmit}>
-                                <Form.Group>
-                                    <Form.Label htmlFor='name'>Name: </Form.Label>
-                                    <Form.Control 
-                                        type='text'
-                                        name='name'
-                                        onChange={this.handleChange}
-                                    />
-                                </Form.Group>
-
-                                <Form.Group>
-                                    <Form.Label htmlFor='email'>Email: </Form.Label>
-                                    <Form.Control  
-                                        type='email'
-                                        name='email'
-                                        onChange={this.handleChange}
-                                    />
-                                </Form.Group>
-
-                                <Form.Group>
-                                    <Form.Label htmlFor='message'>Message: </Form.Label>
-                                    <Form.Control  
-                                        as='textarea'
-                                        rows="4"
-                                        name='message'
-                                        onChange={this.handleChange}
-                                    />
-                                </Form.Group>
+                                <CommonForm name='name' type='text' event={this.handleChange} />
+                                <CommonForm name='email' type='eamil' event={this.handleChange} />
+                                <CommonForm as='textarea' rows='4' name='message' type='message' event={this.handleChange} />
                                 <SubmitButton type="submit">Submit</SubmitButton>
                             </Form>
                         </Col>
