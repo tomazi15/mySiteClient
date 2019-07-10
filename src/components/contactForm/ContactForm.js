@@ -46,7 +46,6 @@ class ContactForm extends Component {
     }
 
     render() {
-        console.log('EVNET', this.state.name);
         return (
             <Style>
                 <Container>
